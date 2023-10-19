@@ -18,7 +18,8 @@ window.onload = () => {
 	
 	function urlAddEvent(e) {
 		// Obtain the URL from the specified form
-		const url = document.querySelector('input[name=url]').value;
+		const url = document.querySelector("section#url > select[name=protocol]").value + 
+			document.querySelector("section#url > input[name=url]").value;
 		
 		// WARNING: This is incredibly unsafe! Sanitise the inputs!
 		const list = document.getElementById("url-list");
@@ -42,6 +43,7 @@ window.onload = () => {
 	}
 	
 	function urlRemoveEvent(e) {
+		// Find the nodes responsible for URL removal
 		const target = e.target;
 		const urlList = document.querySelector("#url-list");
 
@@ -62,7 +64,6 @@ window.onload = () => {
 		// Remove that URL from the list and update the DOM to reflect this
 		urls.splice(childIndex, 1)
 		target.parentNode.remove();
-		console.log(urls);
 	}
 
 	function urlValidate() {

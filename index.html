@@ -35,7 +35,11 @@
 			<section id="url">
 				<h2>URLs</h2>
 				
-				<label>URL</label>
+				<select name="protocol" id="protocols" value="https://">
+					<option value="https://">https://</option>
+					<option value="http://">http://</option>
+					<option value="ftp://">ftp://</option>
+				</select>
 				<input id="url-add-input" type="text" name="url">
 				<button id="url-add-button">Add</button>
 
@@ -44,8 +48,7 @@
 				<button>Clear List</button>
 
 				<p>
-					HINT: Use "$0" to determine where the search query will be inserted.
-					You may only insert this once into the URL string and it will help customise what kind of window opens.
+					HINT: Use $0 to insert a query string into any given URL.
 				</p>
 			</section>
 
