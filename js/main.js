@@ -20,29 +20,54 @@ window.onload = () => {
 		// Obtain the URL from the specified form
 		const url = document.querySelector('input[name=url]').value;
 		
-		// Add a sanitized version of the URL to the list as HTML
+		// WARNING: This is incredibly unsafe! Sanitise the inputs!
 		const list = document.getElementById("url-list");
 		const fragment = document.createDocumentFragment();
 		const listItem = fragment.appendChild(document.createElement("li"));
 		const anchor = listItem.appendChild(document.createElement("a"));
+		const buttonRemove = listItem.appendChild(document.createElement("button"));
 		
-		// TODO: Find a way to sanitize this
+		listItem.setAttribute("data-url", url);
+		buttonRemove.innerHTML = "Remove";
+		buttonRemove.addEventListener("click", urlRemoveEvent);
 		anchor.setAttribute("href", url);
 		anchor.innerHTML = url;
 		list.appendChild(listItem);
 		
 		// Retain a plain-text copy of that URL in the mutual list
 		urls.push(url);
+
+		// Reset the input of the text box
+		document.querySelector("#url-add-input").value = "";
 	}
 	
+	function urlRemoveEvent(e) {
+		const target = e.target;
+		const urlList = document.querySelector("#url-list");
+
+		// Find all the URLs entered by the user
+		let listItems = [];
+		let listedUrls = [];
+		for (let child = 0; child < urlList.children.length; child++) {
+			let listItem = urlList.children[child];
+
+			listItems.push(listItem);
+			listedUrls.push(listItem.getAttribute("data-url"));
+		}
+
+		// Find the index of the URL the user wants to remove
+		const targetListItem = target.parentNode;
+		const childIndex = listedUrls.indexOf(targetListItem.getAttribute("data-url"));
+
+		// Remove that URL from the list and update the DOM to reflect this
+		urls.splice(childIndex, 1)
+		target.parentNode.remove();
+		console.log(urls);
+	}
+
 	function urlValidate() {
 		// TODO: Make sure user input fits the format we're expecting
 		// This will probably make use of regular expressions
-		return;
-	}
-	
-	function removeURL() {
-		// TODO: Implement this feature
 		return;
 	}
 
@@ -60,7 +85,7 @@ window.onload = () => {
 		if (urls.length !== 0) {
 			urls.forEach(url => {
 
-				window.open(url.replace("{$0}", searchInput.value), "_blank");
+				window.open(url.replace("$0", encodeURIComponent(searchInput.value)), "_blank");
 			});
 		}
 	}
