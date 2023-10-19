@@ -23,13 +23,21 @@
 	<body>
 		<main>
 			<h1>Tabby</h1>
-			<!-- Allow the user to add new URLs to be searched through -->
+
+			<!-- Allow the user to add, remove and update URLs to be searched through -->
 			<div id="url-management">
 				<label>URL</label>
-				<input type="text" name="url" onsubmit="addnewUrl">
-				<button onclick="addNewUrl()">Add</button>
+				<input id="new-url" type="text" name="url" onsubmit="addnewUrl">
+				<button onclick="addURL()">Add</button>
 
 				<ul id="url-ledger"></ul>
+			</div>
+
+			<!-- Allow the user to search based on URLs found -->
+			<div id="multisearch-form">
+				<label>Search</label>
+				<input type="text" name="query">
+				<button>Submit</button>
 			</div>
 			
 		</main>
