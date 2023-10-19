@@ -1,10 +1,40 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+<!doctype html>
+<html class="no-js" lang="en">
+
 	<head>
 		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Tabby</title>
+		<link rel="stylesheet" href="css/main.css">
+		<meta name="description" content="Generic multisearch tool for GET requests over HTTP">
+
+		<meta property="og:title" content="Tabby">
+		<meta property="og:type" content="">
+		<meta property="og:url" content="">
+		<meta property="og:image" content="">
+
+		<link rel="icon" href="/favicon.ico" sizes="any">
+		<link rel="apple-touch-icon" href="icon.png">
+
+		<link rel="manifest" href="site.webmanifest">
+		<meta name="theme-color" content="#fafafa">
 	</head>
+
 	<body>
-		
+		<main>
+			<h1>Tabby</h1>
+			<!-- Allow the user to add new URLs to be searched through -->
+			<div id="url-management">
+				<label>URL</label>
+				<input type="text" name="url" onsubmit="addnewUrl">
+				<button onclick="addNewUrl()">Add</button>
+
+				<ul id="url-ledger"></ul>
+			</div>
+			
+		</main>
+
+		<script src="js/main.js"></script>
 	</body>
+
 </html>
