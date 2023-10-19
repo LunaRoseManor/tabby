@@ -24,8 +24,16 @@
 		<main>
 			<h1>Tabby</h1>
 
+			<!-- Allow the user to search based on URLs found -->
+			<section id="search">
+				<h2>Search</h2>
+				<input id="search-input" type="text" name="query">
+				<button id="search-button">Submit</button>
+			</section>
+
 			<!-- Allow the user to add, remove and update URLs to be searched through -->
 			<section id="url">
+				<h2>URLs</h2>
 				<label>URL</label>
 				<input id="url-add-input" type="text" name="url">
 				<button id="url-add-button">Add</button>
@@ -33,17 +41,12 @@
 				<ul id="url-list"></ul>
 			</section>
 
-			<!-- Allow the user to search based on URLs found -->
-			<section id="search">
-				<label>Search</label>
-				<input type="text" name="query">
-				<button>Submit</button>
-			</section>
+			<!-- TODO: Add presets for URL list -->
 			
 		</main>
 
+		<script src="js/plugins.js"></script>
 		<script src="js/main.js"></script>
-		<script src="js/cleanHTML.js"></script>
 	</body>
 
 </html>
