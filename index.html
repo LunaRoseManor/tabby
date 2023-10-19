@@ -25,24 +25,25 @@
 			<h1>Tabby</h1>
 
 			<!-- Allow the user to add, remove and update URLs to be searched through -->
-			<div id="url-management">
+			<section id="url">
 				<label>URL</label>
-				<input id="new-url" type="text" name="url" onsubmit="addnewUrl">
-				<button onclick="addURL()">Add</button>
+				<input id="url-add-input" type="text" name="url">
+				<button id="url-add-button">Add</button>
 
-				<ul id="url-ledger"></ul>
-			</div>
+				<ul id="url-list"></ul>
+			</section>
 
 			<!-- Allow the user to search based on URLs found -->
-			<div id="multisearch-form">
+			<section id="search">
 				<label>Search</label>
 				<input type="text" name="query">
 				<button>Submit</button>
-			</div>
+			</section>
 			
 		</main>
 
 		<script src="js/main.js"></script>
+		<script src="js/cleanHTML.js"></script>
 	</body>
 
 </html>
