@@ -4,8 +4,8 @@ window.onload = () => {
 	// WARNING: Urls contained within are unsafe and shouldn't be directly displayed!
 	var urls = [];
 	
-	const urlAddButton = document.querySelector("#url-add-button");
-	const urlAddInput = document.querySelector("#url-add-input");
+	const urlAddButton = document.querySelector("#url-custom-add-button");
+	const urlAddInput = document.querySelector("#url-custom-add-input");
 	
 	// Add event handlers to process new URLs to be searched
 	urlAddButton.addEventListener("click", urlAddEvent);
@@ -17,29 +17,32 @@ window.onload = () => {
 	});
 	
 	function urlAddEvent(e) {
-		// Obtain the URL from the specified form
-		const url = document.querySelector("section#url > select[name=protocol]").value + 
+		// Obtain the plain text href from the specified form
+		const href = document.querySelector("section#url > select[name=protocol]").value + 
 			document.querySelector("section#url > input[name=url]").value;
 		
-		// WARNING: This is incredibly unsafe! Sanitise the inputs!
-		const list = document.getElementById("url-list");
-		const fragment = document.createDocumentFragment();
-		const listItem = fragment.appendChild(document.createElement("li"));
-		const anchor = listItem.appendChild(document.createElement("a"));
-		const buttonRemove = listItem.appendChild(document.createElement("button"));
-		
-		listItem.setAttribute("data-url", url);
-		buttonRemove.innerHTML = "Remove";
-		buttonRemove.addEventListener("click", urlRemoveEvent);
-		anchor.setAttribute("href", url);
-		anchor.innerHTML = url;
-		list.appendChild(listItem);
-		
-		// Retain a plain-text copy of that URL in the mutual list
-		urls.push(url);
+		if (urlValidate(href) === true) {
+			// WARNING: This is incredibly unsafe! Sanitise the inputs!
+			const list = document.getElementById("url-list");
+			const fragment = document.createDocumentFragment();
+			const listItem = fragment.appendChild(document.createElement("li"));
+			const anchor = listItem.appendChild(document.createElement("a"));
+			const buttonRemove = listItem.appendChild(document.createElement("button"));
+			
+			listItem.setAttribute("data-url", href);
+			buttonRemove.innerHTML = "Remove";
+			buttonRemove.addEventListener("click", urlRemoveEvent);
+			anchor.setAttribute("href", href);
+			anchor.setAttribute("target", "_blank"); // Target a new tab in the browser
+			anchor.innerHTML = href;
+			list.appendChild(listItem);
+			
+			// Make sure to store a copy of the href so we can open the tabs later
+			urls.push(href);
 
-		// Reset the input of the text box
-		document.querySelector("#url-add-input").value = "";
+			// Reset the input of the text box
+			document.querySelector("#url-custom-add-input").value = "";
+		}
 	}
 	
 	function urlRemoveEvent(e) {
@@ -66,10 +69,24 @@ window.onload = () => {
 		target.parentNode.remove();
 	}
 
-	function urlValidate() {
-		// TODO: Make sure user input fits the format we're expecting
-		// This will probably make use of regular expressions
-		return;
+	function urlValidate(href) {
+		try {
+			const urlConstruct = new URL(href);
+			const pattern = new RegExp(
+				"^([a-zA-Z]+:\\/\\/)?" + // protocol
+				"((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+				"((\\d{1,3}\\.){3}\\d{1,3}))" + // OR IP (v4) address
+				"(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+				"(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+				"(\\#[-a-z\\d_]*)?$", // fragment locator
+				"i"
+			);
+			
+			return pattern.test(urlConstruct.href);
+		} catch {
+			// Constructing the URL object failed
+			return false;
+		}
 	}
 
 	const searchInput = document.querySelector("#search-input");
