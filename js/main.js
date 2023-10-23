@@ -40,8 +40,11 @@ window.onload = () => {
 			// Make sure to store a copy of the href so we can open the tabs later
 			urls.push(href);
 
-			// Reset the input of the text box
+			// Reset the input of the text box so the user doesn't have to
 			document.querySelector("#url-custom-add-input").value = "";
+		} else {
+			// TODO: Make this happen inside the DOM
+			alert("ERROR: Plain text href '" + href + "' contains invalid formatting.");
 		}
 	}
 	
@@ -71,24 +74,17 @@ window.onload = () => {
 
 	function urlValidate(href) {
 		try {
-			const urlConstruct = new URL(href);
-			const pattern = new RegExp(
-				"^([a-zA-Z]+:\\/\\/)?" + // protocol
-				"((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
-				"((\\d{1,3}\\.){3}\\d{1,3}))" + // OR IP (v4) address
-				"(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
-				"(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
-				"(\\#[-a-z\\d_]*)?$", // fragment locator
-				"i"
-			);
-			
-			return pattern.test(urlConstruct.href);
+			// This will fail if the URL isn't valid
+			const url = new URL(href);
+					
+			return true;
 		} catch {
 			// Constructing the URL object failed
 			return false;
 		}
 	}
 
+	// Search functionality
 	const searchInput = document.querySelector("#search-input");
 	const searchButton = document.querySelector("#search-button");
 
