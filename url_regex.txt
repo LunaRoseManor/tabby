@@ -1,0 +1,41 @@
+# Javascript
+
+# NOTE: Not intended for global searches or general validation
+# This is purely for validating inputs to this specific validation
+
+# TODO: Convert this to work with unicode characters
+
+# Characters allowed in a standard ASCII Url:
+# https://stackoverflow.com/questions/7109143/what-characters-are-valid-in-a-url#7109208
+# https://stackoverflow.com/questions/1547899/which-characters-make-a-url-invalid/1547940#1547940
+# A-Z
+# a-z
+# 0-9
+# .
+# _
+# ~
+# :
+# /
+# ?
+# #
+# [
+# ]
+# @
+# !
+# $
+# &
+# '
+# (
+# )
+# *
+# +
+# ,
+# ;
+# =
+# /[A-Za-z0-9\.\-\_\~\:\/\?\#\[\]\@\!\$\&\'\(\)\*\+\,\;\=\%]/
+([a-z][a-z]*\:\/\/)? # Protocol
+([a-z][a-zA-Z0-9\-\+]*\.)+([a-z]{2,3})\/? # Hostname
+([A-Za-z0-9\-\_\$]+\/)* # Path
+[\?\&][a-zA-Z0-9\+\-\_\%\$\.]+\=[a-zA-Z0-9\+\-\_\%\$\.]+ # Query String
+(\#[A-Za-z0-9\.\-\_\$\%]+)? # Fragment
+# ([a-z][a-z]*\:\/\/)?(([a-z][a-zA-Z0-9\-\+]*\.)+([a-z]{2,3})\/?([A-Za-z0-9\-\_]+\/)*([\?\&][a-zA-Z0-9\+\-\_\%\$\.]+\=[a-zA-Z0-9\+\-\_\%\$\.]+)*)(\#[A-Za-z0-9\.\-\_\$\%]+)

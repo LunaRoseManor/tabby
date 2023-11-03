@@ -35,6 +35,12 @@
 			<section id="url">
 				<h2>URLs</h2>
 
+				<h3>Presets</h3>
+				<select name="url-presets" id="url-presets-select" value="search-engines">
+					<option value="search-engines">Top 5 Search Engines</option>
+				</select>
+				<button id="url-preset-submit">Load</button>
+
 				<h3>Custom</h3>
 				<select name="protocol" id="protocols" value="https://">
 					<option value="https://">https://</option>
@@ -44,9 +50,10 @@
 				<input id="url-custom-add-input" type="text" name="url">
 				<button id="url-custom-add-button">Add</button>
 
+				<h3>List</h3>
 				<ul id="url-list"></ul>
 
-				<button>Clear List</button>
+				<button>Remove All</button>
 
 				<p>
 					HINT: Use $0 to insert a query string into any given URL.

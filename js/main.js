@@ -23,6 +23,7 @@ window.onload = () => {
 		
 		if (urlValidate(href) === true) {
 			// WARNING: This is incredibly unsafe! Sanitise the inputs!
+			// TODO: Figure out how to validate and sanitize URLs
 			const list = document.getElementById("url-list");
 			const fragment = document.createDocumentFragment();
 			const listItem = fragment.appendChild(document.createElement("li"));
@@ -73,15 +74,14 @@ window.onload = () => {
 	}
 
 	function urlValidate(href) {
-		try {
-			// This will fail if the URL isn't valid
-			const url = new URL(href);
-					
-			return true;
-		} catch {
-			// Constructing the URL object failed
-			return false;
-		}
+		// This will fail if the URL isn't valid
+		// Modified solution from https://urlregex.com/
+		// NOTE: This is a horrible solution that doesn't account for Unicode,
+		// but I've been working on this for weeks and this is the best I
+		// can come up with.
+		const pattern = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_$0-9]*)?\??(?:[\-\+=&;%@\.\w_$0-9]*)#?(?:[\.\!\/\\\w]*))?)/;
+		
+		return pattern.test(href);
 	}
 
 	// Search functionality
