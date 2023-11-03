@@ -18,8 +18,8 @@ window.onload = () => {
 	
 	function urlAddEvent(e) {
 		// Obtain the plain text href from the specified form
-		const href = document.querySelector("section#url > select[name=protocol]").value + 
-			document.querySelector("section#url > input[name=url]").value;
+		const href = document.querySelector("section#input > select[name=protocol]").value + 
+			document.querySelector("section#input > input[name=url]").value;
 		
 		if (urlValidate(href) === true) {
 			// WARNING: This is incredibly unsafe! Sanitise the inputs!
@@ -78,7 +78,8 @@ window.onload = () => {
 		// Modified solution from https://urlregex.com/
 		// NOTE: This is a horrible solution that doesn't account for Unicode,
 		// but I've been working on this for weeks and this is the best I
-		// can come up with.
+		// can come up with. Designed to pick up on the "$d" syntax added for
+		// replacement strings.
 		const pattern = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_$0-9]*)?\??(?:[\-\+=&;%@\.\w_$0-9]*)#?(?:[\.\!\/\\\w]*))?)/;
 		
 		return pattern.test(href);
@@ -98,7 +99,6 @@ window.onload = () => {
 	function searchEvent(e) {
 		if (urls.length !== 0) {
 			urls.forEach(url => {
-
 				window.open(url.replace("$0", encodeURIComponent(searchInput.value)), "_blank");
 			});
 		}

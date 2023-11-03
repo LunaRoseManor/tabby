@@ -87,6 +87,92 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+
+/* Desktop */
+body,
+html {
+  background-color: whitesmoke;
+  font-family: Arial, Helvetica, sans-serif;
+  border: 0px none;
+}
+
+main {
+  background-color: #fefefe;
+  color: #1f1f1f;
+  margin-left: auto;
+  margin-right: auto;
+  width: 64em;
+  padding: 2em;
+}
+
+/* Make forms look a bit more presentable */
+input {
+  background-color: none;
+  border: 0;
+  border-bottom: 1px solid grey;
+  padding: 0.5em;
+}
+
+select,
+button {
+  border: 0;
+  background-color: none;
+  padding: 0.5em;
+}
+
+header {
+  margin: 2em;
+  padding-left: 2em;
+  margin-left: auto;
+  margin-right:auto;
+  width: 64em;
+}
+
+main h1 {
+  text-align: center;
+}
+
+section {
+  width: auto;
+  float: left;
+  margin: 1em;
+  max-width: 33%;
+}
+
+/* Tablets */
+@media (max-width: 1200px) {
+  main {
+    width: 32rem;
+    padding: 2rem;
+  }
+
+  header {
+    margin: 2em;
+    padding-left: 2em;
+    margin-left: auto;
+    margin-right:auto;
+    width: 32em;
+  }
+
+  section {
+    float: none;
+    max-width: 100%;
+  }
+}
+
+/* Phones */
+@media (max-width: 768px) {
+  main {
+    width: auto;
+    padding: 2rem;
+  }
+
+  section {
+    float: none;
+    max-width: auto;
+  }
+}
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */
