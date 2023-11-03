@@ -18,10 +18,10 @@ window.onload = () => {
 	
 	function urlAddEvent(e) {
 		// Obtain the plain text href from the specified form
-		const href = document.querySelector("section#input > select[name=protocol]").value + 
+		const dirtyHref = document.querySelector("section#input > select[name=protocol]").value + 
 			document.querySelector("section#input > input[name=url]").value;
 		
-		if (urlValidate(href) === true) {
+		if (urlValidate(dirtyHref) === true) {
 			// WARNING: This is incredibly unsafe! Sanitise the inputs!
 			// TODO: Figure out how to validate and sanitize URLs
 			const list = document.getElementById("url-list");
@@ -29,23 +29,25 @@ window.onload = () => {
 			const listItem = fragment.appendChild(document.createElement("li"));
 			const anchor = listItem.appendChild(document.createElement("a"));
 			const buttonRemove = listItem.appendChild(document.createElement("button"));
-			
-			listItem.setAttribute("data-url", href);
+			const cleanHref = encodeURI(dirtyHref);
+
+
+			listItem.setAttribute("data-url", cleanHref);
 			buttonRemove.innerHTML = "Remove";
 			buttonRemove.addEventListener("click", urlRemoveEvent);
-			anchor.setAttribute("href", href);
+			anchor.setAttribute("href", cleanHref);
 			anchor.setAttribute("target", "_blank"); // Target a new tab in the browser
-			anchor.innerHTML = href;
+			anchor.innerHTML = cleanHref;
 			list.appendChild(listItem);
 			
 			// Make sure to store a copy of the href so we can open the tabs later
-			urls.push(href);
+			urls.push(cleanHref);
 
 			// Reset the input of the text box so the user doesn't have to
 			document.querySelector("#url-custom-add-input").value = "";
 		} else {
 			// TODO: Make this happen inside the DOM
-			alert("ERROR: Plain text href '" + href + "' contains invalid formatting.");
+			alert("ERROR: Plain text href '" + dirtyHref + "' contains invalid formatting.");
 		}
 	}
 	
