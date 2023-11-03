@@ -32,35 +32,33 @@
 				<p>
 					HINT: Use $0 to insert a query string into any given URL.
 				</p>
-
-				<h3>Custom</h3>
 				<select name="protocol" id="protocols" value="https://">
 					<option value="https://">https://</option>
 					<option value="http://">http://</option>
 					<option value="ftp://">ftp://</option>
 				</select>
 				<input id="url-custom-add-input" type="text" name="url">
-				<button id="url-custom-add-button">Add</button>
+				<button id="url-custom-add-button">➕ Add</button>
 				
 				<h3>Presets</h3>
 				<select name="url-presets" id="url-presets-select" value="search-engines">
 					<option value="search-engines">Top 5 Search Engines</option>
 				</select>
-				<button id="url-preset-submit">Load</button>
+				<button id="url-preset-submit">💾 Load</button>
 			</section>
 
 			<!-- Show the URLs given to the user -->
 			<section id="list">
 				<h2>2. Prune them</h2>
+				<button id="url-remove-all">🗑️ Remove All URLs</button>
 				<ul id="url-list"></ul>
-				<button id="url-remove-all">Remove All</button>
 			</section>
 
 			<!-- Allow the user to search based on URLs found -->
 			<section id="search">
 				<h2 id="title">3. Search</h2>
 				<input id="search-input" type="text" name="query">
-				<button id="search-button">Submit</button>
+				<button id="search-button">🔎 Submit</button>
 			</section>
 		</main>
 

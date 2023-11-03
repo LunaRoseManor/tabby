@@ -96,17 +96,25 @@ html {
   border: 0px none;
 }
 
+/* URL Input List */ 
+#url-list {
+  padding-left: 0px;
+}
+
 #url-list a {
   list-style-type: none;
-  padding: 0.5em;
+  vertical-align: center;
+  max-width: 66.6%;
 }
 
-#url-remove-all {
-  background-color: pink;
+#url-list button {
+  float: right;
 }
 
-#url-remove-all:hover {
-  background-color: lightcoral;
+#url-list li {
+  list-style-type: none;
+  width: 100%;
+  margin: 1em;
 }
 
 button:active {
@@ -135,7 +143,6 @@ input:focus {
   background-color: #fefefe;
 }
 
-select,
 button {
   border: 0;
   background-color: none;
@@ -155,9 +162,20 @@ main h1 {
 }
 
 section {
+  display: flexbox;
+  flex-direction: column;
   float: left;
   margin: 1em;
   max-width: 33.3%;
+}
+
+select {
+  border: none;
+  padding: 0.5em;
+}
+
+select:hover {
+  background-color: lightgray;
 }
 
 /* Tablets */
